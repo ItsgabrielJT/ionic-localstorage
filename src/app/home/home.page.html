@@ -1,0 +1,56 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title route >Subir archivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Imagen -->
+  <ion-card class="ion-text-center" *ngIf="!isFileUploading && !isFileUploaded">
+    <ion-card-header>
+      <ion-card-title>Escoge la imagen para subir</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="primary" size="medium">
+        <input type="file" (change)="uploadFile($event, 'image')" />
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Archivo de texto -->
+  <ion-card class="ion-text-center" *ngIf="!isFileUploading && !isFileUploaded">
+    <ion-card-header>
+      <ion-card-title>Escoge el archivo de texto para subir</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="primary" size="medium">
+        <input type="file" (change)="uploadFile($event, 'text')" />
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Archivo PDF -->
+  <ion-card class="ion-text-center" *ngIf="!isFileUploading && !isFileUploaded">
+    <ion-card-header>
+      <ion-card-title>Escoge el archivo PDF para subir</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="primary" size="medium">
+        <input type="file" (change)="uploadFile($event, 'pdf')" />
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Barra de progreso de carga -->
+  <div *ngIf="percentageVal | async as percentage">
+    Progreso: {{ percentage | number }}%
+    <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+  </div>
+
+  <!-- Información adicional -->
+  <div *ngIf="trackSnapshot | async as snap">
+    Tamaño del archivo: {{ snap.totalBytes | formatFileSize }} Transferido: {{
+    snap.bytesTransferred | formatFileSize }}
+  </div>
+</ion-content>

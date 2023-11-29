@@ -1,0 +1,7 @@
+{
+  "name": "ionic-firebase-file-upload",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
